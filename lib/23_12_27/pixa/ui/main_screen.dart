@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/23_12_27/pixa/ui/image_item_widget.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -36,14 +37,19 @@ class MainScreen extends StatelessWidget {
                       ),
                     )),
               ),
+              SizedBox(
+                height: 24,
+              ),
               Expanded(
                 child: GridView.builder(
                   itemCount: 10,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
+                      crossAxisSpacing: 32,
+                      mainAxisSpacing: 32,
                     ),
                     itemBuilder: (context, index) {
-                      return Text('111');
+                      return ImageItemWidget();
                     }),
               )
             ],
