@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../dto/PixaDto.dart';
+import '../dto/pixa_dto.dart';
 import 'package:http/http.dart' as http;
 
 class PixaApi {
