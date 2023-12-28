@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/23_12_28/%EB%B9%84%EA%B5%90/ui/main_screen.dart';
 import 'package:untitled/23_12_28/ui/main_screen.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainScreen2(),
+      home: MainScreen(),
     );
   }
 }

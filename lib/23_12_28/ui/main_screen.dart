@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/23_12_28/model/image_data.dart';
+import 'package:untitled/23_12_28/repository/pixaimage_item_repository.dart';
 import 'package:untitled/23_12_28/ui/image_widget.dart';
 
 class MainScreen2 extends StatefulWidget {
@@ -9,9 +10,19 @@ class MainScreen2 extends StatefulWidget {
   State<MainScreen2> createState() => _MainScreen2State();
 }
 
-List<ImageData> imageDataList = [];
-
 class _MainScreen2State extends State<MainScreen2> {
+  final textEditingController = TextEditingController();
+  List<ImageData> imageDataList = [];
+  final repository = PixabayImageItemRepository();
+
+  Future<void> searchImage(String query) async {
+    imageDataList = await repository.getImageItems(query);
+
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +49,9 @@ class _MainScreen2State extends State<MainScreen2> {
                   ),
                   hintText: 'Search',
                   suffixIcon: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      searchImage(textEditingController.text);
+                    },
                     icon: const Icon(
                       Icons.search,
                       color: Color(0xFF4FB6B2),
@@ -46,10 +59,15 @@ class _MainScreen2State extends State<MainScreen2> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 24,
+              ),
               Expanded(
                 child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
+                    crossAxisSpacing: 24,
+                    mainAxisSpacing: 24,
                   ),
                   itemCount: imageDataList.length,
                   itemBuilder: (context, index) {
