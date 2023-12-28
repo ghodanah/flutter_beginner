@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/23_12_28/model/image_data.dart';
+import 'package:untitled/23_12_28/ui/image_widget.dart';
 
-class MainScreen2 extends StatelessWidget {
+class MainScreen2 extends StatefulWidget {
   const MainScreen2({super.key});
 
+  @override
+  State<MainScreen2> createState() => _MainScreen2State();
+}
+
+List<ImageData> imageDataList = [];
+
+class _MainScreen2State extends State<MainScreen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +51,12 @@ class MainScreen2 extends StatelessWidget {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                   ),
-                  itemCount: 10,
+                  itemCount: imageDataList.length,
                   itemBuilder: (context, index) {
-                    return Image.network('https://cdn.pixabay.com/photo/2017/09/26/13/21/apples-2788599_150.jpg');
+                    final imageData = imageDataList[index];
+                    return ImageWidget(
+                      imageData: imageData,
+                    );
                   },
                 ),
               ),
