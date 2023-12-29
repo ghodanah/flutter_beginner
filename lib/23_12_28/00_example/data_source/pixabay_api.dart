@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:untitled/23_12_28/%EB%B9%84%EA%B5%90/dto/pixabay_dto.dart';
+import 'package:untitled/23_12_28/dto/pixabay_dto.dart';
 
 class PixabayApi {
   Future<PixabayDto> getImagesResult(String query) async {

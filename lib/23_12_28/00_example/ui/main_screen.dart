@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/23_12_28/%EB%B9%84%EA%B5%90/model/image_item.dart';
-import 'package:untitled/23_12_28/%EB%B9%84%EA%B5%90/repository/item_item_repository.dart';
-import 'package:untitled/23_12_28/%EB%B9%84%EA%B5%90/ui/image_widget.dart';
+import 'package:untitled/23_12_28/00_example/model/image_item.dart';
+import 'package:untitled/23_12_28/00_example/repository/item_item_repository.dart';
+import 'package:untitled/23_12_28/00_example/ui/image_widget.dart';
+
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

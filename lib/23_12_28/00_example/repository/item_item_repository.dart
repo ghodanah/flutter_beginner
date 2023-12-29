@@ -1,8 +1,9 @@
 
-import 'package:untitled/23_12_28/%EB%B9%84%EA%B5%90/data_source/pixabay_api.dart';
-import 'package:untitled/23_12_28/%EB%B9%84%EA%B5%90/mapper/image_mapper.dart';
-import 'package:untitled/23_12_28/%EB%B9%84%EA%B5%90/model/image_item.dart';
 
+
+import 'package:untitled/23_12_28/00_example/data_source/pixabay_api.dart';
+import 'package:untitled/23_12_28/00_example/mapper/image_mapper.dart';
+import 'package:untitled/23_12_28/00_example/model/image_item.dart';
 
 abstract interface class ImageItemRepository {
   Future<List<ImageItem>> getImageItems(String query);
