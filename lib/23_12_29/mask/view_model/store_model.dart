@@ -5,6 +5,8 @@ import '../model/store.dart';
 
 class StoreModel with ChangeNotifier {
   List<Store> stores = [];
+  var isLoading = false;
+
   final _storeRepository = StoreRepository();
 
   StoreModel() {
@@ -12,7 +14,11 @@ class StoreModel with ChangeNotifier {
   }
 
   Future fetch() async {
+    isLoading = true;
+    notifyListeners();
+
     stores = await _storeRepository.fetch();
+    isLoading = false;
     notifyListeners();
   }
 }
