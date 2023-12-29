@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -67,21 +67,33 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('마스크 재고 있는 곳: ${stores.length}곳'),
+        title: Text('마스크 재고 있는 곳: ${stores.where((e) {
+          return e.remainStat == 'plenty' ||
+              e.remainStat == 'some' ||
+              e.remainStat == 'few';
+        }).length}곳'),
         actions: [
-          IconButton(onPressed: fetch, icon: Icon(Icons.refresh),),
+          IconButton(
+            onPressed: fetch,
+            icon: const Icon(Icons.refresh),
+          ),
         ],
       ),
       body: isLoading
           ? loadingWiget()
           : ListView(
-        children: stores.map(
-                (e) {
-              return ListTile(title: Text(e.name!),
-                subtitle: Text(e.addr!),
-                trailing: _buildRemainStatWidget(e),);
-            }).toList(),
-      ),
+              children: stores.where((e) {
+                return e.remainStat == 'plenty' ||
+                    e.remainStat == 'some' ||
+                    e.remainStat == 'few';
+              }).map((e) {
+                return ListTile(
+                  title: Text(e.name!),
+                  subtitle: Text(e.addr!),
+                  trailing: _buildRemainStatWidget(e),
+                );
+              }).toList(),
+            ),
     );
   }
 
@@ -91,22 +103,22 @@ class _MyHomePageState extends State<MyHomePage> {
     var color = Colors.black;
 
     switch (store.remainStat) {
-      case 'plenty' :
+      case 'plenty':
         remainStat = '충분';
         description = '100개 이상';
         color = Colors.green;
         break;
-      case 'some' :
+      case 'some':
         remainStat = '보통';
         description = '30개 ~ 100개';
         color = Colors.yellow;
         break;
-      case 'few' :
+      case 'few':
         remainStat = '부족';
         description = '2개 ~ 30개';
         color = Colors.red;
         break;
-      case 'empty' :
+      case 'empty':
         remainStat = '소진임박';
         description = '1개 이하';
         color = Colors.grey;
@@ -114,17 +126,22 @@ class _MyHomePageState extends State<MyHomePage> {
       default:
     }
 
-
     return Column(
       children: [
-        Text(remainStat, style: TextStyle(color: color, fontWeight: FontWeight.bold),),
-        Text(description, style: TextStyle(color: color),),
+        Text(
+          remainStat,
+          style: TextStyle(color: color, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          description,
+          style: TextStyle(color: color),
+        ),
       ],
     );
   }
 
   Widget loadingWiget() {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
